@@ -10,43 +10,52 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage {
 
-	WebDriver driver; // declare a class variable driver to use in all methods of this class
-	WebDriverWait wait; //only required if using explicit waits for the elements
+	WebDriver driver;
+	WebDriverWait wait;
 
-	// constructor to initiate the webdriver
-	// Will creat object of this page class in our test class.Then this constructor
-	// will get called.
-	public LoginPage(WebDriver driver) // the Webdriver object will be passed from our test class
-	{
-		this.driver = driver; // the driver variable of this class is getting initialized by the Webdriver object
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // only required if using Explicit Wait
+	// constructor:
+	public LoginPage(WebDriver driver) {
+		this.driver = driver;
+		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 
-	// locators (here just give the locators with By, no need to give
-	// driver.findElement
-	By txt_userNameloc = By.xpath("//input[@placeholder='Username']");
-	By txt_passwordloc = By.xpath("//input[@placeholder='Password']");
-	By btn_loginBtnloc = By.xpath("//button[normalize-space()='Login']");
+	// locators:
+	private By userNameLoc = By.xpath("//input[@placeholder='Username']");
+	private By passwordLoc = By.xpath("//input[@placeholder='Password']");
+	private By BtnLoc = By.xpath("//button[normalize-space()='Login']");
+	
+	private By errorLoc = By.xpath("//p[@class='oxd-text oxd-text--p oxd-alert-content-text']");
 
-	// action methods (declare all as public)
-	// send keys to user name. Call this method from the test class and pass a
-	// string for user name
-	public void setUserName(String Username) {
-		WebElement userName = driver.findElement(txt_userNameloc);
-		userName.sendKeys(Username);
+	// methods
+	// 1. Sendkeys user name to the user name field:
+
+	public void setUserName(String UserName) {
+		WebElement txt_UserName = wait.until(ExpectedConditions.elementToBeClickable(userNameLoc));
+		txt_UserName.sendKeys(UserName);
+
 	}
 
 	public void setPassword(String Password) {
-		WebElement password = driver.findElement(txt_passwordloc);
-		password.sendKeys(Password);
+		WebElement txt_Password = wait.until(ExpectedConditions.elementToBeClickable(passwordLoc));
+		txt_Password.sendKeys(Password);
 
 	}
 
-	public void clickLoginBtn() {
-		//WebElement loginBtn = driver.findElement(btn_loginBtnloc);
-		//We can add an explicit wait for this button to get clickable 
-		WebElement loginBtn = wait.until(ExpectedConditions.elementToBeClickable(btn_loginBtnloc));
+	public void click_LoginBtn() {
+		WebElement loginBtn = wait.until(ExpectedConditions.elementToBeClickable(BtnLoc));
 		loginBtn.click();
 	}
+	
+	//for invalid credential, check if the error message is displayed or not:
+	public boolean isErrorMessageDisplayed() {
+		WebElement errMessg = wait.until(ExpectedConditions.visibilityOfElementLocated(errorLoc));
+        return errMessg.isDisplayed(); //return true if the error message is displayed
+    }
+	
+	//get the error message when it is displayed:
+	public String getErrorMessage() {
+        WebElement errorMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(errorLoc));
+        return errorMsg.getText();
+    }
 
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Functional Suite">
+
+	<listeners>
+		<listener class-name="utils.MyExtentReport" />
+	</listeners>
+	<test name="FunctionalTest">
+		<classes>
+			<class name="tests.LoginTest" />
+		</classes>
+	</test> <!--
+	FunctionalTest -->
+</suite> <!--
+Functional Suite -->
