@@ -43,6 +43,7 @@ public class MyExtentReport implements ITestListener {
 		spark.config().setReportName("Functional Test Report"); // name of report
 		// spark.config().setTheme(Theme.DARK); // Theme: can be STANDARD also.
 		spark.config().setTheme(Theme.STANDARD);
+		spark.config().setOfflineMode(true);
 
 		// call methods of the ExtentReports class to send general information to the
 		// report like:

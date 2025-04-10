@@ -56,7 +56,7 @@
 				<version>3.1.0</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>testng.xml</suiteXmlFile> <!-- Relative to
+						<suiteXmlFile>testng2.xml</suiteXmlFile> <!-- Relative to
 						project root -->
 					</suiteXmlFiles>
 					<reportsDirectory>
