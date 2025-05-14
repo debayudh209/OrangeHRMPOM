@@ -51,7 +51,7 @@ public class LoginTest extends BaseTest {
 	public Object[][] logindata() {
 		return new Object[][] { { "Admin", "admin123", true }, // Valid Credentials
 				{ "Admin", "wrongPass", false }, // Invalid Password
-				{ "wrongUser", "admin123", false } // Invalid Username
+				{ "wrongUser", "admin12345", false } // Invalid Username
 
 		};
 	}
