@@ -43,12 +43,8 @@ public class MyExtentReport implements ITestListener {
 		spark.config().setReportName("Functional Test Report"); // name of report
 		// spark.config().setTheme(Theme.DARK); // Theme: can be STANDARD also.
 		spark.config().setTheme(Theme.DARK);
+		
 
-		// call methods of the ExtentReports class to send general information to the
-		// report like:
-		report.setSystemInfo("Tester", "DC");
-		report.setSystemInfo("Environment", "QA");
-		report.setSystemInfo("Browser", "Mozilla");
 	}
 
 	@Override
@@ -71,7 +67,7 @@ public class MyExtentReport implements ITestListener {
 			try {
 				test.addScreenCaptureFromPath(screenshotPath, "Failure Screenshot");
 			} catch (Exception e) {
-				test.log(Status.FAIL, "⚠️ Error attaching screenshot: " + e.getMessage());
+				test.log(Status.FAIL, "Error attaching screenshot: " + e.getMessage());
 			}
 		}
 	}
@@ -103,7 +99,7 @@ public class MyExtentReport implements ITestListener {
 		File directory = new File(screenshotDir);
 		if (!directory.exists()) {
 			directory.mkdirs();
-			System.out.println("📁 Created directory: " + screenshotDir);
+			System.out.println("Created directory: " + screenshotDir);
 		}
 		// Define screenshot file path
 		String screenshotPath = screenshotDir + testName + ".png"; // set the file name under the directory

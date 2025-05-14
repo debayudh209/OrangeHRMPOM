@@ -1,13 +1,12 @@
 package tests;
 
-import pages.HomePage;
-import pages.LoginPage;
-import utils.*;
-import base.*;
-
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import base.BaseTest;
+import pages.HomePage;
+import pages.LoginPage;
 
 public class LoginTest extends BaseTest {
 
